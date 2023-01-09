@@ -1,21 +1,9 @@
 from inspyred.ec.emo import Pareto
-from visualization.plot import StreamingPlot
-from utils.utilities import non_dominated_population
-from inspyred.ec.emo import Pareto
-import math
 import numpy as np
-from loadModels import loadVAE
-
 
 
 class Observers:
-    def __init__(self, all_mols): 
-        
-        self.all_mols = all_mols
-        self.gen_model = loadVAE()
-
-
-
+    
     def fitness_statistics(self,population):
         """Return the basic statistics of the population's fitness values.
         
@@ -51,8 +39,6 @@ class Observers:
         return stats 
 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
-
-
     def results_observer(self, population, num_generations, num_evaluations, args):
         """
         Print the output of the evolutionary computation to a file with the follow fields:
@@ -103,50 +89,3 @@ class Observers:
 
     def __name__(self):
         return "aaa"
-
-
-class VisualizerObserver():
-    """
-
-    """
-    def __init__(self, all_mols,reference_front = None, reference_point = None, display_frequency =1, axis_labels = None, non_dominated = True ,print_stats = True):
-        self.figure = None
-        self.display_frequency = display_frequency
-        self.reference_point = reference_point
-        self.reference_front = reference_front
-        self.print_stats = print_stats
-        self.stats = Observers(all_mols) if self.print_stats else None
-        self.axis_labels = axis_labels
-        self.non_dominated = non_dominated
-
-
-
-    def update(self,population, num_generations, num_evaluations, args):
-        generations = num_generations
-        evaluations = num_evaluations
-
-        if population:
-            if self.non_dominated:
-                pop = non_dominated_population(population)
-            else:
-                pop = population
-
-            if self.figure is None:
-                self.figure = StreamingPlot(axis_labels=self.axis_labels)
-                solutions = []
-                for i in range(len(pop)):
-                    obj = pop[i].fitness.values
-                    solutions.append(obj)
-                self.figure.plot(solutions)
-
-            if (generations % self.display_frequency) == 0:
-                solutions = []
-                for i in range(len(pop)):
-                    obj = pop[i].fitness.values
-                    solutions.append(obj)
-                self.figure.update(solutions)
-                self.figure.ax.set_title('Eval: {}'.format(evaluations), fontsize=13)
-            
-            if self.print_stats:
-                self.stats.results_observer(population, num_generations, num_evaluations, args)
-

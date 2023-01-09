@@ -1,6 +1,6 @@
 import argparse
 import pickle
-from genprot.models.vaes import MSAVAE, ARVAE
+from genprot.models.gVAE.vaes import MSAVAE, ARVAE
 from genprot.utils.io import output_fasta
 
 

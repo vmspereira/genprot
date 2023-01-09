@@ -1,6 +1,3 @@
-import sys
-sys.path.append('/home/mmartins/GenProtEA')
-from loadModels import loadVAE
 import numbers
 import collections
 import numpy as np
@@ -119,10 +116,9 @@ class Problem(object):
 
 class proteinProblem(Problem):
 
-    def __init__(self, fevaluation):
+    def __init__(self, fevaluation, model=None, dimension = 32):
         Problem.__init__(self, "protGen", fevaluation)
-        self.gen_model = loadVAE()
-        self.dimensions =self.gen_model.latent_dim
+        self.dimensions = model.latent_dim if model else dimension
         self.bounder = RealBounder(self.dimensions, 0 , 100.0)
         
 

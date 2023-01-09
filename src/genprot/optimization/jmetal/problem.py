@@ -1,10 +1,9 @@
 """ JMetal Problems 
 """
-from jmetal.core.solution import Solution, IntegerSolution
+from jmetal.core.solution import Solution
 from jmetal.core.problem import Problem
 from optimization.ea import SolutionInterface, dominance_test
 import random
-import warnings
 from typing import List
 
 

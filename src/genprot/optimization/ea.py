@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
 from utils.constants import EAConstants
-from collections import OrderedDict
 
 
 class SolutionInterface(ABC):

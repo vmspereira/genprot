@@ -1,11 +1,9 @@
 from jmetal.core.observer import Observer
 from jmetal.lab.visualization import StreamingPlot
-from optimization.ea import non_dominated_population
+from ..ea import non_dominated_population
 from typing import List, TypeVar
-import logging
 import numpy
 import copy
-import random
 
 
 S = TypeVar('S')
