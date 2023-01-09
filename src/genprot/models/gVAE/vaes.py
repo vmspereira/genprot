@@ -1,4 +1,3 @@
-#from utils import aa_letters
 from .protcnn import BaseProtVAE, sampler
 from .encoders import cnn_encoder, fc_encoder
 from .decoders import recurrent_sequence_decoder, fc_decoder

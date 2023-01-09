@@ -114,16 +114,14 @@ class Problem(object):
         raise NotImplementedError
 
 
-class proteinProblem(Problem):
+class ProteinProblem(Problem):
 
     def __init__(self, fevaluation, model=None, dimension = 32):
         Problem.__init__(self, "protGen", fevaluation)
+        self.gen_model = model
         self.dimensions = model.latent_dim if model else dimension
         self.bounder = RealBounder(self.dimensions, 0 , 100.0)
         
-
-    def instanciate(self):
-        pass
         
     def generator(self, random, args):
         """
@@ -149,8 +147,6 @@ class proteinProblem(Problem):
         p = []
         c = to_array(latentVect)
         decodProt = self.gen_model.decode(c)
-        print(decodProt)
-        
         for f in self.fevaluation: p.append(f(decodProt,batched=False))
 
         return p
@@ -186,11 +182,11 @@ class proteinProblem(Problem):
 
     def copy(self):
         fs = [f.copy() for f in self.fevaluation]
-        return proteinProblem(fs)
+        return ProteinProblem(fs)
 
 
 
-class proteinReporter(proteinProblem):
+class proteinReporter(ProteinProblem):
 
     def __init__(self, fevaluation):
         super(proteinReporter,self).__init__(fevaluation)

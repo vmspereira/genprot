@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from utils.constants import EAConstants
+from genprot.utils.constants import EAConstants
 
 
 class SolutionInterface(ABC):

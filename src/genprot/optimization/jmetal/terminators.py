@@ -1,13 +1,12 @@
 from jmetal.util.termination_criterion import TerminationCriterion
-from optimization.problem import proteinProblem
 import numpy as np
 import tensorflow as tf 
-from utils.decoding import _decode_ar
-
+from genprot.optimization.problem import ProteinProblem
+from genprot.utils.decoding import _decode_ar
 
 class StoppingByEvaluationsAndQuality(TerminationCriterion):
 
-    def __init__(self, problem: proteinProblem, max_evaluations: int, expected_value: float):
+    def __init__(self, problem: ProteinProblem, max_evaluations: int, expected_value: float):
         super(StoppingByEvaluationsAndQuality, self).__init__()
         self.problem = problem
         self.max_evaluations = max_evaluations

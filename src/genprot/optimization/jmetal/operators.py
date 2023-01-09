@@ -1,8 +1,8 @@
 """JMetalpy operators
 """
 
-from optimization.jmetal.problem import protSolution
-from utils.constants import EAConstants
+from genprot.optimization.jmetal.problem import protSolution
+from genprot.utils.constants import EAConstants
 from jmetal.core.operator import Mutation, Crossover
 from jmetal.core.solution import Solution
 from typing import List

@@ -1,4 +1,4 @@
-from utils.constants import EAConstants
+from genprot.utils.constants import EAConstants
 
 from .ea import Solution
 

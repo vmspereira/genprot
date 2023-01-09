@@ -1,20 +1,19 @@
-from jmetal.algorithm.singleobjective import SimulatedAnnealing
+from jmetal.algorithm.singleobjective import SimulatedAnnealing, GeneticAlgorithm
 from jmetal.algorithm.multiobjective import NSGAII, SPEA2, GDE3
 from jmetal.algorithm.multiobjective.nsgaiii import NSGAIII
 from jmetal.algorithm.multiobjective.nsgaiii import UniformReferenceDirectionFactory
 from jmetal.util.termination_criterion import StoppingByEvaluations
 from jmetal.operator import BinaryTournamentSelection
-from utils.process import MultiProcessorEvaluator
-from optimization.ea import AbstractEA
+from genprot.utils.process import MultiProcessorEvaluator
+from ..ea import AbstractEA
 from .problem import JMetalProblem
 from .observers import PrintObjectivesStatObserver, VisualizerObserver
 from .operators import * 
 from .generators import presetGenerator
 from .evaluators import BatchEvaluator
 from .terminators import StoppingByEvaluationsAndQuality
-from .algorithms import mGeneticAlgorithm as GeneticAlgorithm
-from utils.constants import EAConstants
-from utils.process import cpu_count
+from genprot.utils.constants import EAConstants
+from genprot.utils.process import cpu_count
 
 
 # SOEA alternatives
@@ -144,7 +143,7 @@ class EA(AbstractEA):
 
     def _convertPopulation(self, population):
         p = []
-        from optimization.ea import Solution as ProblemSolution
+        from genprot.optimization.ea import Solution as ProblemSolution
         for i in range(len(population)):
             # Corrects fitness values for maximization problems
             # TODO: verify each objective individualy

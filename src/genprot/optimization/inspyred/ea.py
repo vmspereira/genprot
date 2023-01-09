@@ -1,5 +1,5 @@
-from utils.process import MultiProcessorEvaluator, cpu_count
-from utils.constants import EAConstants
+from genprot.utils.process import MultiProcessorEvaluator, cpu_count
+from genprot.utils.constants import EAConstants
 from ..ea import AbstractEA, Solution
 from .problem import InspyredProblem
 from . import operators
