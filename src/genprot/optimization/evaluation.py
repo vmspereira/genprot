@@ -1,7 +1,6 @@
 from abc import ABCMeta, abstractmethod
 import numpy as np
 from functools import reduce
-from hmmer.app import *
 import math 
 import re
 
@@ -167,6 +166,9 @@ def synthesis_rules(candidate):
     return synthesis_rules_failed
 
 
+def evaluateHMM(candidate):
+    return 0
+
 
 
 class EvaluationFunction:
@@ -253,9 +255,9 @@ class AggregatedSum(EvaluationFunction):
     def method_str(self):
         return "Aggregated Sum = " + reduce(lambda a, b: a+" "+b, [f.method_str() for f in self.fevaluation], "")
 
-class Min_Rules_Solubility(EvaluationFunction):
+class MinRulesSolubility(EvaluationFunction):
     def __init__(self, maximize=False, worst_fitness=5):
-        super(Min_Rules_Solubility,self).__init__(maximize=maximize, worst_fitness=worst_fitness)
+        super(MinRulesSolubility,self).__init__(maximize=maximize, worst_fitness=worst_fitness)
 
     def _get_fitness_single(self, candidate):
         rules_failed = solubility_rules(candidate)#/len(candidate)
@@ -273,9 +275,9 @@ class Min_Rules_Solubility(EvaluationFunction):
     def __str__(self):
         return 'Solubility Rules Failed'
 
-class Min_Rules_Synthesis(EvaluationFunction):
+class MinRulesSynthesis(EvaluationFunction):
     def __init__(self, maximize=False, worst_fitness=100):
-        super(Min_Rules_Synthesis,self).__init__(maximize=maximize, worst_fitness=worst_fitness)
+        super(MinRulesSynthesis,self).__init__(maximize=maximize, worst_fitness=worst_fitness)
 
     def _get_fitness_single(self, candidate):
         rules_failed = synthesis_rules(candidate)#/len(candidate)
@@ -296,9 +298,9 @@ class Min_Rules_Synthesis(EvaluationFunction):
         
         
         
-class Min_reps(EvaluationFunction):
+class MinReps(EvaluationFunction):
     def __init__(self, maximize=False, worst_fitness=10):
-        super(Min_reps,self).__init__(maximize=maximize, worst_fitness=worst_fitness)
+        super(MinReps,self).__init__(maximize=maximize, worst_fitness=worst_fitness)
 
     def _get_fitness_single(self, candidate):
         reps_rules_failed = 0 
@@ -341,10 +343,10 @@ class Min_reps(EvaluationFunction):
         
         
 
-class Max_Hidrophobicity(EvaluationFunction):
+class MaxHidrophobicity(EvaluationFunction):
 
     def __init__(self, maximize=True, worst_fitness=-1):
-        super(Max_Hidrophobicity, self).__init__(maximize=maximize, worst_fitness=worst_fitness)
+        super(MaxHidrophobicity, self).__init__(maximize=maximize, worst_fitness=worst_fitness)
 
     def _get_fitness_single(self, candidate):
         h = []
@@ -372,10 +374,10 @@ class Max_Hidrophobicity(EvaluationFunction):
         return 'Maximize hidrophobicity'
         
         
-class Prob_Hmm(EvaluationFunction):
+class ProbHMM(EvaluationFunction):
 
     def __init__(self, maximize=True, worst_fitness=0):
-        super(Prob_Hmm, self).__init__(maximize=maximize, worst_fitness=worst_fitness)
+        super(ProbHMM, self).__init__(maximize=maximize, worst_fitness=worst_fitness)
 
     def _get_fitness_single(self, candidate):
         probability = evaluateHMM(candidate)
