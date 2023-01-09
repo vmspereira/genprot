@@ -30,7 +30,7 @@ def train():
   callbacks=[CSVLogger('../output/logs/msavae.csv')]
   callbacks.append(EarlyStopping(monitor='loss', patience=3))
   if save_all_epochs:
-      callbacks.append(ModelCheckpoint('../output/weights/msavae'+'.{epoch:02d}-{luxa_errors_mean:.2f}.hdf5',
+      callbacks.append(ModelCheckpoint('../output/weights/msavae'+'.{epoch:02d}}.hdf5',
                                       save_best_only=False, verbose=1))
 
   print('Training model')

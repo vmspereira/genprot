@@ -24,10 +24,10 @@ def main(weights_file, msa=True, num_samples=500, output_file=None, model_kwargs
 
   model.load_weights(weights_file)
 
-  variants = model.generate_variants_luxA(num_samples, posterior_var_scale=posterior_var_scale,
+  variants = model.generate_variants(num_samples, posterior_var_scale=posterior_var_scale,
                                           temperature=temperature, solubility_level=solubility_level)
   
-  names = ['luxa_var{}'.format(i+1) for i in range(num_samples)]
+  names = ['var{}'.format(i+1) for i in range(num_samples)]
   output_fasta(names, variants, output_file)
 
 
