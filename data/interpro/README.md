@@ -4,7 +4,7 @@ Interpro sequences download and alignment tool
 
 The docker file allows to easily download, align and trim by length amino acid sequences from Interpro, as well as generate HMM profiles, given an Interpro assertion identifier.
 
-## Build the image and use the image
+## Build and use the image
 
 ```
 docker build -t interpro .
