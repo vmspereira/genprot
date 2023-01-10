@@ -3,6 +3,7 @@ import numpy as np
 from functools import reduce
 import math 
 import re
+from .hmm import hmm
 
 hydroscale  = {'A':  0.620,'R': -2.530,'N': -0.780,'D': -0.900,
                 'C':  0.290,'Q': -0.850,'E': -0.740,'G':  0.480,
@@ -164,10 +165,6 @@ def synthesis_rules(candidate):
             
 
     return synthesis_rules_failed
-
-
-def evaluateHMM(candidate):
-    return 0
 
 
 
@@ -376,18 +373,22 @@ class MaxHidrophobicity(EvaluationFunction):
         
 class ProbHMM(EvaluationFunction):
 
-    def __init__(self, maximize=True, worst_fitness=0):
+    def __init__(self, url:str, hmmfile:str ,maximize:bool=True, worst_fitness:float=0):
         super(ProbHMM, self).__init__(maximize=maximize, worst_fitness=worst_fitness)
-
+        self.url = url
+        self.hmmfile = hmmfile
+         
     def _get_fitness_single(self, candidate):
-        probability = evaluateHMM(candidate)
-
-        return probability
+        probability = hmm(self.url, candidate, self.hmmfile)
+        if probability is None:
+            return self.worst_fitness
+        else:
+            return probability
 
     def _get_fitness_batch(self, listProts):
         hmm_batch =[]
         for candidate in listProts:
-            hmm_batch.append(evaluateHMM(candidate))
+            hmm_batch.append(self._eva_get_fitness_single(candidate))
         return hmm_batch
 
     def __str__(self):

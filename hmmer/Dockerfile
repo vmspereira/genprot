@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y \
 WORKDIR root
 RUN wget http://eddylab.org/software/hmmer/hmmer-${HMMER_VERSION}.tar.gz
 RUN tar zxf hmmer-${HMMER_VERSION}.tar.gz
-WORKDIR hmmer-${HMMER_VERSION}
+WORKDIR /hmmer-${HMMER_VERSION}
 RUN ./configure --prefix /usr/local
 RUN make
 # optional: run automated tests
