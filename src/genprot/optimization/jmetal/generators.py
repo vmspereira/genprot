@@ -1,5 +1,5 @@
 from jmetal.util.generator import Generator
-from .problem import protSolution 
+from .problem import ProteinSolution 
 from ..problem import RealBounder
 
 class presetGenerator(Generator):
@@ -12,7 +12,7 @@ class presetGenerator(Generator):
     def new(self, problem):
         if self.curr == len(self.initial_population): self.curr = 0
         individual = self.initial_population[self.curr]
-        new_solution = protSolution(
+        new_solution = ProteinSolution(
             problem.problem.bounder.lower_bound,
             problem.problem.bounder.upper_bound,
             len(individual),

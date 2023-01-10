@@ -1,7 +1,7 @@
 """JMetalpy operators
 """
 
-from genprot.optimization.jmetal.problem import protSolution
+from genprot.optimization.jmetal.problem import ProteinSolution
 from genprot.utils.constants import EAConstants
 from jmetal.core.operator import Mutation, Crossover
 from jmetal.core.solution import Solution
@@ -10,7 +10,7 @@ import random
 import copy
 
 
-class OnePointCrossover(Crossover[protSolution,protSolution]):
+class OnePointCrossover(Crossover[ProteinSolution, ProteinSolution]):
     """One point Crossover
 
     :param probability: (float) The probability of crossover.    
@@ -19,7 +19,7 @@ class OnePointCrossover(Crossover[protSolution,protSolution]):
         super(OnePointCrossover, self).__init__(probability=probability)
         
 
-    def execute(self, parents: List[protSolution]) -> List[protSolution]:
+    def execute(self, parents: List[ProteinSolution]) -> List[ProteinSolution]:
         if len(parents) != 2:
             raise Exception('The number of parents is not two: {}'.format(len(parents)))
 
@@ -47,7 +47,7 @@ class OnePointCrossover(Crossover[protSolution,protSolution]):
         return 'One Point Crossover'
 
 
-class TwoPointCrossover(Crossover[protSolution,protSolution]):
+class TwoPointCrossover(Crossover[ProteinSolution, ProteinSolution]):
     """Two Point Crossover
     :param probability: (float) The probability of crossover.
     
@@ -56,7 +56,7 @@ class TwoPointCrossover(Crossover[protSolution,protSolution]):
         super(TwoPointCrossover, self).__init__(probability=probability)
         
 
-    def execute(self, parents: List[protSolution]) -> List[protSolution]:
+    def execute(self, parents: List[ProteinSolution]) -> List[ProteinSolution]:
         if len(parents) != 2:
             raise Exception('The number of parents is not two: {}'.format(len(parents)))
 
@@ -123,7 +123,7 @@ class MutationContainer(Mutation[Solution]):
 
 
 
-class GaussianMutation(Mutation[protSolution]):
+class GaussianMutation(Mutation[ProteinSolution]):
     """
      A Gaussian mutator
     """
@@ -161,7 +161,7 @@ class GaussianMutation(Mutation[protSolution]):
 
 
 
-class SingleMutation(Mutation[protSolution]):
+class SingleMutation(Mutation[ProteinSolution]):
     """
     Mutates a single element
     """

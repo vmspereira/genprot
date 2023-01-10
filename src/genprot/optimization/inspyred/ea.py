@@ -104,7 +104,7 @@ class EA(AbstractEA):
         if self.mp:
             nmp = cpu_count()
             try:
-                from mewpy.utils.process import RayEvaluator
+                from genprot.utils.process import RayEvaluator
                 mp_evaluator = RayEvaluator(self.ea_problem, nmp)
             except ImportError:
                 mp_evaluator = MultiProcessorEvaluator(

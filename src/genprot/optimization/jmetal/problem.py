@@ -7,11 +7,11 @@ import random
 from typing import List
 
 
-class protSolution(Solution[float], SolutionInterface):
-    """ Class representing a KO solution """
+class ProteinSolution(Solution[float], SolutionInterface):
+    """ Class representing a solution """
 
     def __init__(self, lower_bound: float, upper_bound: float, number_of_variables: int, number_of_objectives: int):
-        super(protSolution, self).__init__(number_of_variables,
+        super(ProteinSolution, self).__init__(number_of_variables,
                                          number_of_objectives)
         self.lower_bound = lower_bound
         self.upper_bound = upper_bound
@@ -20,6 +20,7 @@ class protSolution(Solution[float], SolutionInterface):
         if isinstance(solution, self.__class__):
             return self.variables.sort() == solution.variables.sort()
         return False
+
 
     # JMetal consideres all problems as minimization
     # Based on pareto dominance
@@ -45,7 +46,7 @@ class protSolution(Solution[float], SolutionInterface):
         return False
 
     def __copy__(self):
-        new_solution = protSolution(
+        new_solution = ProteinSolution(
             self.lower_bound,
             self.upper_bound,
             self.number_of_variables,
@@ -74,7 +75,7 @@ class protSolution(Solution[float], SolutionInterface):
 
 
 
-class JMetalProblem(Problem[protSolution]):
+class JMetalProblem(Problem[ProteinSolution]):
 
     def __init__(self, problem,batched=True):
         self.problem = problem
@@ -89,9 +90,9 @@ class JMetalProblem(Problem[protSolution]):
             else:
                 self.obj_directions.append(self.MINIMIZE)
 
-    def create_solution(self) -> protSolution:
+    def create_solution(self) -> ProteinSolution:
         solution = self.problem.generator(random, None)
-        new_solution = protSolution(
+        new_solution = ProteinSolution(
             self.problem.bounder.lower_bound,
             self.problem.bounder.upper_bound,
             len(solution),
@@ -102,7 +103,7 @@ class JMetalProblem(Problem[protSolution]):
     def get_constraints(self, solution):
         return self.problem.decode(solution.variables)
 
-    def evaluate_single(self, solution: protSolution) -> protSolution:
+    def evaluate_single(self, solution: ProteinSolution) -> ProteinSolution:
         candidate = solution.variables
         p = self.problem.evaluate_solution(candidate,self.batched)
         for i in range(len(p)):
@@ -113,7 +114,7 @@ class JMetalProblem(Problem[protSolution]):
                 solution.objectives[i] = p[i]
         return solution
 
-    def evaluate_batch(self, solution_list: List[protSolution]) -> protSolution:
+    def evaluate_batch(self, solution_list: List[ProteinSolution]) -> ProteinSolution:
         
         listLatent = [solut.variables for solut in solution_list]
         listScores = self.problem.evaluate_solution( listLatent, self.batched)
