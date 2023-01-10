@@ -135,5 +135,3 @@ class BaseProtVAE:
         target_conds = None if solubility_level is None else batch_conds(num_samples, solubility_level)
         return self.decode(luxa_z, remove_gaps=True, sample_func=sample_func,
                            conditions=target_conds)
-    
-        pass

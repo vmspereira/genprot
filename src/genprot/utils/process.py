@@ -74,7 +74,7 @@ class SparkEvaluator(Evaluator):
     def __init__(self, evaluator, mp_num_cpus):
         self.evaluator = evaluator
         self.spark_conf = SparkConf().setAppName(
-            "mewpy").setMaster(f"local[{mp_num_cpus}]")
+            "genprot").setMaster(f"local[{mp_num_cpus}]")
         self.spark_context = SparkContext(conf=self.spark_conf)
 
     def evaluate(self, candidates, args):
