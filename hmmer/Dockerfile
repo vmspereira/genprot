@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y \
     htop \
     vim
 
-WORKDIR root
+WORKDIR /
 RUN wget http://eddylab.org/software/hmmer/hmmer-${HMMER_VERSION}.tar.gz
 RUN tar zxf hmmer-${HMMER_VERSION}.tar.gz
 WORKDIR /hmmer-${HMMER_VERSION}

@@ -169,9 +169,9 @@ def hmm(filename):
 def msa(filename):
     tokens = filename.split('.')
     out = '.'.join(tokens[:-1])+'-aln.fasta'
-    os.system("docker run -v ${PWD}/" + FOLDER + ":/data " +
-                   "staphb/mafft mafft --auto " + filename + " > data/" + out)
-
+    # os.system("docker run -v ${PWD}/" + FOLDER + ":/data " +
+    #               "staphb/mafft mafft --auto " + filename + " > data/" + out)
+    os.system("mafft --auto " + filename + " > data/" + out)
     return out
     
 if __name__ == "__main__":

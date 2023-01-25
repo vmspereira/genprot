@@ -1,5 +1,5 @@
 import numpy as np
-from .alphabet import aa_letters
+from .alphabet import aa_letters, ALPHABET_SIZE
 
 
 def to_string(seqmat, remove_gaps=True):
@@ -15,12 +15,12 @@ def greedy_decode_1d(arr1d):
 def greedy_decode(pred_mat):
     return np.apply_along_axis(greedy_decode_1d, -1, pred_mat)
 
-def _decode_nonar(generator, z, remove_gaps=False, alphabet_size=21, conditions=None):
+def decode_nonar(generator, z, remove_gaps=False, alphabet_size=ALPHABET_SIZE, conditions=None):
     xp = generator.predict(z) if conditions is None else generator.predict([z, conditions])
     x = greedy_decode(xp)
     return to_string(x, remove_gaps=remove_gaps)
 
-def _decode_ar(generator, z, remove_gaps=False, alphabet_size=21,
+def decode_ar(generator, z, remove_gaps=False, alphabet_size=ALPHABET_SIZE,
                sample_func=None, conditions=None):
     original_dim, alphabet_size = generator.output_shape[1], generator.output_shape[-1]
     x = np.zeros((z.shape[0], original_dim, alphabet_size))

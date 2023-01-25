@@ -1,1 +1,1 @@
-from .gVAE.vaes import MSAVAE, ARVAE
+from .VAE.model import VAE

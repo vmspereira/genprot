@@ -60,6 +60,6 @@ def one_hot_generator(seqlist, conditions=None, batch_size=32,
             if conditions is not None:
                 yield [batch, conds[i*batch_size:(i+1)*batch_size]], batch
             else:
-                yield batch, batch
+                yield batch, None
 
         epoch += 1

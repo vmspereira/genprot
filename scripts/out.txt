@@ -1,0 +1,2 @@
+Tensor("model_1_target:0", shape=(None, None, None), dtype=float32) Tensor("model_1/activation/Softmax:0", shape=(None, 1530, 22), dtype=float32) Tensor("metrics/vae_loss/Sum:0", shape=(None,), dtype=float32) Tensor("metrics/vae_loss/mul:0", shape=(None,), dtype=float32)
+Tensor("model_1_target:0", shape=(None, None, None), dtype=float32) Tensor("model_1/activation/Softmax:0", shape=(None, 1530, 22), dtype=float32) Tensor("loss/model_1_loss/Sum:0", shape=(None,), dtype=float32) Tensor("loss/model_1_loss/mul:0", shape=(None,), dtype=float32)
