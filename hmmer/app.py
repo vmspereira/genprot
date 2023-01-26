@@ -39,6 +39,12 @@ def evaluate():
     value = evaluateHMM(seq,hmm)
     return jsonify({'value':value})
 
+@app.route("/evalbatch/", methods=["POST"])
+def evaluate():
+    seq = request.form.get('seq')
+    hmm = request.form.get('hmm')
+    value = evaluateHMM(seq,hmm)
+    return jsonify({'value':value})
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0',port=5010)
+    app.run(host='0.0.0.0',port=5000)

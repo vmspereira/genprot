@@ -3,7 +3,7 @@ import numpy as np
 from functools import reduce
 import math 
 import re
-from .hmm import hmm
+from ..remote.hmm import hmm
 
 hydroscale  = {'A':  0.620,'R': -2.530,'N': -0.780,'D': -0.900,
                 'C':  0.290,'Q': -0.850,'E': -0.740,'G':  0.480,

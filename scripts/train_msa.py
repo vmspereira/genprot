@@ -40,7 +40,7 @@ def train():
               encoder_dropout=[0.],
               decoder_hidden=[100], 
               decoder_dropout=[0.],
-              beta=0.1
+              beta=0.5
               )
   
   model.vae.summary()
@@ -53,7 +53,6 @@ def train():
   
   model.fit(train_gen,
           epochs=n_epochs,
-          #batch_size=batch_size,
           steps_per_epoch=len(msa_seqs) // batch_size,
           validation_data=val_gen,
           validation_steps=len(val_msa_seqs) // batch_size,
@@ -62,8 +61,9 @@ def train():
   model.save_weights('../output/weights/anti.h5')
   
   x = model.prior_sample(remove_gaps=True)
-  VH,LH = tuple(x[0].split('&'))
-  print(VH,LH)
+  # antibody VHH and VL are separated by '&'
+  VH, VL = tuple(x[0].split('&'))
+  print(VH,VL)
 
 if __name__ == '__main__':
   train()

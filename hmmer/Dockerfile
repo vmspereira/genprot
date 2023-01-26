@@ -5,9 +5,7 @@ ARG HMMER_VERSION="3.3.2"
 RUN apt-get update && apt-get install -y \
     wget \
     curl \
-    unzip \
-    htop \
-    vim
+    unzip
 
 WORKDIR /
 RUN wget http://eddylab.org/software/hmmer/hmmer-${HMMER_VERSION}.tar.gz
