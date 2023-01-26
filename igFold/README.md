@@ -9,4 +9,5 @@ Without pyRosetta
 `docker build -t igfold .`
 
 With pyRosetta. You need to provide the proper credentials.
+
 `docker build -t igfold --build-arg USERNAME=[value] --build-arg PASSWORD=[value] .`
